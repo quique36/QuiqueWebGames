@@ -1,0 +1,330 @@
+:root {
+  --bg: #0b0d1a;
+  --bg-2: #151a33;
+  --panel: #1b2140;
+  --line: #2d3560;
+  --text: #eef0ff;
+  --muted: #8f96c4;
+  --gold: #ffd35a;
+  --pixel: "Press Start 2P", "DotGothic16", monospace;
+  --dot: "DotGothic16", "Press Start 2P", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--dot);
+}
+
+.screen[hidden] { display: none !important; }
+
+/* ---------- タイトル画面 ---------- */
+#title-screen {
+  position: relative;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(32px, 7vh, 72px) 16px 32px;
+  background:
+    radial-gradient(ellipse at 50% -10%, #2a2f6b 0%, transparent 60%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+  overflow-x: hidden;
+}
+
+.stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1px 1px at 12% 18%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 78% 12%, #fff 50%, transparent 51%),
+    radial-gradient(2px 2px at 64% 34%, #cfd6ff 50%, transparent 51%),
+    radial-gradient(1px 1px at 30% 44%, #fff 50%, transparent 51%),
+    radial-gradient(2px 2px at 88% 58%, #cfd6ff 50%, transparent 51%),
+    radial-gradient(1px 1px at 8% 72%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 46% 86%, #fff 50%, transparent 51%),
+    radial-gradient(2px 2px at 22% 92%, #cfd6ff 50%, transparent 51%);
+  animation: twinkle 4s steps(2) infinite;
+  opacity: .7;
+}
+@keyframes twinkle { 50% { opacity: .35; } }
+
+.logo { position: relative; text-align: center; margin-bottom: 20px; }
+.logo-sub {
+  margin: 0 0 12px;
+  font-family: var(--pixel);
+  font-size: clamp(12px, 2.4vw, 18px);
+  letter-spacing: .5em;
+  color: var(--gold);
+}
+.logo-main {
+  margin: 0;
+  font-family: var(--pixel);
+  font-weight: normal;
+  font-size: clamp(28px, 7.5vw, 64px);
+  line-height: 1.1;
+  color: #fff;
+  text-shadow:
+    4px 4px 0 #e0405a,
+    8px 8px 0 #3b1c5a;
+}
+
+.prompt {
+  position: relative;
+  margin: 12px 0 28px;
+  font-size: clamp(14px, 2.6vw, 18px);
+  color: var(--muted);
+}
+.blink { color: var(--gold); animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+/* ---------- ゲームカード ---------- */
+.game-list {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 1040px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+}
+.game-list > li { flex: 0 1 320px; min-width: 260px; }
+
+.card {
+  --accent: #7c86ff;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 0;
+  border: 3px solid var(--line);
+  border-radius: 6px;
+  background: var(--panel);
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 6px 0 #070914;
+  transition: transform .12s, border-color .12s, box-shadow .12s;
+}
+.card:hover,
+.card.selected {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 0 #070914, 0 0 24px color-mix(in srgb, var(--accent) 45%, transparent);
+}
+.card:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+.card:active { transform: translateY(0); box-shadow: 0 4px 0 #070914; }
+
+.card-art {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  min-height: 0;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-bottom: 3px solid var(--line);
+  border-radius: 3px 3px 0 0;
+  background:
+    repeating-linear-gradient(0deg, rgba(255,255,255,.03) 0 2px, transparent 2px 4px),
+    radial-gradient(circle at 50% 60%, color-mix(in srgb, var(--accent) 55%, #000) 0%, #0d1024 75%);
+}
+.card-art img {
+  position: absolute;
+  inset: 12% 0;
+  width: 100%;
+  height: 76%;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 0 rgba(0,0,0,.35));
+  transition: transform .2s;
+}
+.card-art img.pixel { image-rendering: pixelated; }
+.card-art img.cover { inset: 0; height: 100%; object-fit: cover; filter: none; }
+.card:hover .card-art img,
+.card.selected .card-art img { transform: scale(1.08) rotate(-2deg); }
+.card:hover .card-art img.cover,
+.card.selected .card-art img.cover { transform: scale(1.06); }
+
+.card-art .emblem {
+  font-family: var(--pixel);
+  font-size: clamp(22px, 3vw, 28px);
+  line-height: 1.5;
+  text-align: center;
+  padding: 0 16px;
+  color: #fff;
+  text-shadow: 3px 3px 0 var(--accent), 6px 6px 0 #000;
+}
+
+.card-body { padding: 14px 16px 18px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.card-genre {
+  font-family: var(--pixel);
+  font-size: 10px;
+  letter-spacing: .1em;
+  color: var(--accent);
+}
+.card-head { display: flex; align-items: center; gap: 8px; min-height: 18px; }
+.card-badge {
+  padding: 1px 6px;
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 3px;
+  animation: blink 1.6s steps(1) infinite;
+}
+.card-title { margin: 0; font-size: 20px; line-height: 1.3; }
+.card-desc { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+.card-info {
+  margin: 4px 0 6px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 6px 10px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.card-info dt {
+  padding: 0 6px;
+  align-self: start;
+  font-size: 11px;
+  line-height: 19px;
+  white-space: nowrap;
+  text-align: center;
+  color: var(--muted);
+  background: rgba(255,255,255,.06);
+  border-radius: 3px;
+}
+.card-info dd { margin: 0; color: var(--text); overflow-wrap: anywhere; }
+
+.card-play {
+  align-self: flex-start;
+  margin-top: auto;
+  padding: 6px 12px;
+  font-family: var(--pixel);
+  font-size: 11px;
+  color: #0b0d1a;
+  background: var(--accent);
+  border-radius: 3px;
+}
+
+/* ---------- フッター ---------- */
+.hint {
+  position: relative;
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 24px;
+  font-size: 13px;
+  color: var(--muted);
+}
+kbd {
+  display: inline-block;
+  min-width: 1.6em;
+  margin: 0 2px;
+  padding: 1px 6px;
+  border: 2px solid var(--line);
+  border-bottom-width: 3px;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 12px;
+  text-align: center;
+  color: var(--text);
+  background: var(--panel);
+}
+
+/* ---------- プレイ画面 ---------- */
+#play-screen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background: #000;
+}
+
+.play-bar {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 40px;
+  padding: 0 8px;
+  padding-left: max(8px, env(safe-area-inset-left));
+  padding-right: max(8px, env(safe-area-inset-right));
+  background: var(--bg);
+  border-bottom: 2px solid var(--line);
+}
+.play-title {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: center;
+  font-size: 15px;
+  color: var(--muted);
+}
+.bar-btn {
+  flex: 0 0 auto;
+  padding: 5px 12px;
+  border: 2px solid var(--line);
+  border-radius: 4px;
+  background: var(--panel);
+  color: var(--text);
+  font-family: var(--dot);
+  font-size: 14px;
+  cursor: pointer;
+}
+.bar-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+.frame-wrap { position: relative; flex: 1; min-height: 0; background: #000; }
+.frame-wrap iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+/* Esc 長押しのゲージ */
+.esc-gauge {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 12px;
+  font-size: 13px;
+  color: #fff;
+  background: rgba(0,0,0,.7);
+  border: 2px solid var(--gold);
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 2;
+}
+.esc-gauge::after {
+  content: "";
+  display: block;
+  height: 3px;
+  margin-top: 4px;
+  background: var(--gold);
+  transform-origin: left;
+  animation: gauge var(--hold, 800ms) linear forwards;
+}
+@keyframes gauge { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+@media (max-width: 560px) {
+  .game-list { gap: 20px; }
+  .game-list > li { flex-basis: 360px; min-width: 0; }
+  @media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
