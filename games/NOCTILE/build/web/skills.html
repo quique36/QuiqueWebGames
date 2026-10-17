@@ -67,6 +67,7 @@ td.nm { white-space: nowrap; }
 .k-移動 { color: var(--k-mov); } .k-崩し { color: var(--k-brk); } .k-妨害 { color: var(--k-ctl); }
 .rar { font-size: .78rem; color: var(--dim); white-space: nowrap; }
 .rar.r2 { color: var(--blood); font-weight: 700; } .rar.r1 { color: var(--gold); }
+.gems { letter-spacing: -1px; font-size: .72rem; }
 .desc { min-width: 22em; }
 .up { display: block; font-size: .78rem; color: var(--dim); margin-top: 2px; }
 .brk { color: var(--k-brk); font-weight: 700; }
@@ -168,7 +169,8 @@ function rangeHtml(rg) {
   return h + "</div>";
 }
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-const rarHtml = r => `<span class="rar ${r === "希少" ? "r2" : (r === "上級" ? "r1" : "")}">${esc(r)}</span>`;
+// レア度: 宝石の数（通常 1 / 上級 2 / 希少 3）と色
+const rarHtml = r => { const n = r === "希少" ? 3 : (r === "上級" ? 2 : 1); return `<span class="rar ${n === 3 ? "r2" : (n === 2 ? "r1" : "")}"><span class="gems" aria-hidden="true">${"◆".repeat(n)}</span> ${esc(r)}</span>`; };
 
 function render() {
   const tab = TABS.find(t => t.id === st.tab) || TABS[0];
