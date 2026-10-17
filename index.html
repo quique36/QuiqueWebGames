@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Quique Web Games</title>
+  <script>
+    // スレッド有効の Godot ビルド用に Cross-Origin Isolation を有効化する（coi-sw.js 参照）。
+    // 初回訪問時だけ Service Worker を登録して1回リロードする。
+    (() => {
+      if (window.crossOriginIsolated || !window.isSecureContext || !("serviceWorker" in navigator)) return;
+      const KEY = "qwg:coi-reloaded";
+      navigator.serviceWorker.register("coi-sw.js").then(() => {
+        const reload = () => {
+          let done = false;
+          try { done = sessionStorage.getItem(KEY) === "1"; sessionStorage.setItem(KEY, "1"); } catch {}
+          if (!done) location.reload();
+        };
+        if (navigator.serviceWorker.controller) reload();
+        else navigator.serviceWorker.addEventListener("controllerchange", reload, { once: true });
+      }).catch((err) => console.warn("Service Worker の登録に失敗:", err));
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Press+Start+2P&display=swap" rel="stylesheet" crossorigin>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- タイトル画面 -->
+  <main id="title-screen" class="screen">
+    <div class="stars" aria-hidden="true"></div>
+    <header class="logo">
+      <p class="logo-sub">QUIQUE</p>
+      <h1 class="logo-main">WEB GAMES</h1>
+    </header>
+
+    <p class="prompt"><span class="blink">▶</span> あそぶゲームをえらんでね</p>
+
+    <ul id="game-list" class="game-list" role="listbox" aria-label="ゲーム一覧"></ul>
+
+    <footer class="hint">
+      <span><kbd>←</kbd><kbd>→</kbd> えらぶ</span>
+      <span><kbd>Enter</kbd> スタート</span>
+      <span>プレイ中 <kbd>Esc</kbd> 長押しでタイトルへ</span>
+    </footer>
+  </main>
+
+  <!-- プレイ画面 -->
+  <section id="play-screen" class="screen" hidden>
+    <div id="play-bar" class="play-bar">
+      <button id="btn-back" class="bar-btn" type="button" title="タイトルへもどる">◀ タイトル</button>
+      <span id="play-title" class="play-title"></span>
+      <button id="btn-fullscreen" class="bar-btn" type="button" title="全画面">⛶ 全画面</button>
+    </div>
+    <div id="frame-wrap" class="frame-wrap"></div>
+  </section>
+
+  <script src="games.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
