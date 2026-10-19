@@ -20,21 +20,6 @@
 //   accent   : カードの差し色
 window.GAMES = [
   {
-    id: "hina_action",
-    title: "ひなリコイル",
-    genre: "ACTION",
-    info: {
-      time: "10〜20分",
-      status: "ちゃんと遊べる",
-      future: "開発継続予定なし、あとでこのシステムでちゃんとしたやつ作りたい",
-      controls: "パッド推奨",
-      models: "Opus 5.5",
-    },
-    icon: "index.apple-touch-icon.png",
-    pixel: true,
-    accent: "#f2b279",
-  },
-  {
     id: "retro-2d-action",
     title: "CRIMSON CRESCENT",
     genre: "RETRO ACTION",
@@ -98,6 +83,21 @@ window.GAMES = [
     icon: "index.icon.png",
     pixel: false,
     accent: "#5bb8f0",
+  },
+  {
+    id: "hina_action",
+    title: "ひなリコイル",
+    genre: "ACTION",
+    info: {
+      time: "10〜20分",
+      status: "ちゃんと遊べる",
+      future: "開発継続予定なし、あとでこのシステムでちゃんとしたやつ作りたい",
+      controls: "パッド推奨",
+      models: "Opus 5.5",
+    },
+    icon: "index.apple-touch-icon.png",
+    pixel: true,
+    accent: "#f2b279",
   },
   {
     id: "escape_from_GUNMA",
