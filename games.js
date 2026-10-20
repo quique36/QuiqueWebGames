@@ -61,7 +61,7 @@ window.GAMES = [
       future: "開発継続予定なし",
       controls: "キーボード、マウス、パッドなんでも",
       models: "Opus 5.5",
-      comment: "なんか作ってみたくなったやつ",
+      comment: "なんか作ってみたくなったやつ。タイトルのイラストがAI生成っぽいので直したい",
     },
     cover: "thumbs/BEAT_SHOOTER.png",
     icon: null,
