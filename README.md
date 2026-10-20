@@ -29,6 +29,7 @@ python -m http.server 8000
 1. Godot で Web エクスポートし、`games/<フォルダ名>/build/web/index.html` に出力する
 2. `python tools/update_games.py` を実行（`games.js` に自動追記される）
 3. `games.js` を好みに書き換える
+   - `rating`：オススメ度（1〜5 の数値）。カードの説明の先頭に ★☆ で表示されます
    - `info`：カードに並ぶ説明（プレイ時間 / 状態 / 今後 / 操作 / 利用モデル）。空の項目は表示されません
    - `badge`：タイトル横のラベル（例: `"開発中"`）
    - `download`：ブラウザで遊べないゲームのダウンロードページ URL。指定するとボタンが DOWNLOAD になり、

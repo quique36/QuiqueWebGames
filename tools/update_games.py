@@ -60,6 +60,7 @@ def main() -> int:
             "id": gid,
             "title": title,
             "genre": "GAME",
+            "rating": 3,
             "info": {"time": "", "status": "", "future": "", "controls": "", "models": ""},
             "icon": icon,
             "pixel": False,

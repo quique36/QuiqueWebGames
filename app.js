@@ -70,9 +70,20 @@
       body.append(desc);
     }
     const info = INFO_LABELS.filter(([key]) => g.info?.[key]);
-    if (info.length) {
+    const rating = Math.max(0, Math.min(5, Math.round(g.rating || 0)));
+    if (info.length || rating) {
       const dl = document.createElement("dl");
       dl.className = "card-info";
+      // オススメ度は 1〜5 の数値を ★☆ で表示（先頭の行）
+      if (rating) {
+        const dt = document.createElement("dt");
+        const dd = document.createElement("dd");
+        dt.textContent = "オススメ度";
+        dd.className = "card-rating";
+        dd.textContent = "★".repeat(rating) + "☆".repeat(5 - rating);
+        dd.setAttribute("aria-label", `5段階中${rating}`);
+        dl.append(dt, dd);
+      }
       for (const [key, label] of info) {
         const dt = document.createElement("dt");
         const dd = document.createElement("dd");

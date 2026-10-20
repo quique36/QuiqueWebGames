@@ -7,6 +7,7 @@
 //   download : ブラウザで遊べないゲームのダウンロードページ URL（任意）。
 //              指定するとカードのボタンが DOWNLOAD になり、クリックで別タブに開く。games/ にファイルは不要
 //   desc     : 一言説明（任意）
+//   rating   : オススメ度（1〜5 の数値。★☆ で表示。任意）
 //   info     : カードに並べる説明項目（任意。空の項目は表示しない）
 //     time     : プレイ時間
 //     status   : 遊べる状態
@@ -23,6 +24,7 @@ window.GAMES = [
     id: "retro-2d-action",
     title: "CRIMSON CRESCENT",
     genre: "RETRO ACTION",
+    rating: 5,
     info: {
       time: "30〜60分",
       status: "ちゃんと遊べる",
@@ -38,11 +40,12 @@ window.GAMES = [
     id: "NOCTILE",
     title: "NOCTILE",
     genre: "スレスパライクゲーム",
+    rating: 4,
     info: {
       time: "20分〜",
       status: "ちゃんと遊べる（1〜3人プレイ）",
       future: "開発継続予定あり",
-      controls: "キーボード、パッドどちらでも",
+      controls: "キーボード、マウス、パッドなんでも",
       models: "Opus 5.5",
       comment: "協力ゲーの試作。Crimson Crescentと同じ世界観のつもり。まだ色々調整不足。スレスパに寄りすぎてると思う。",
     },
@@ -55,6 +58,7 @@ window.GAMES = [
     id: "BEAT_SHOOTER",
     title: "PULSE DIVER",
     genre: "縦シューティングゲーム",
+    rating: 5,
     info: {
       time: "20〜30分",
       status: "ちゃんと遊べる",
@@ -73,6 +77,7 @@ window.GAMES = [
     title: "RHYTHM FIGHT",
     genre: "RHYTHM × BATTLE",
     badge: "開発中",
+    rating: 4,
     info: {
       time: "やりこめば1時間以上",
       status: "開発中、ちゃんと遊べる",
@@ -88,6 +93,7 @@ window.GAMES = [
     id: "hina_action",
     title: "ひなリコイル",
     genre: "ACTION",
+    rating: 3,
     info: {
       time: "10〜20分",
       status: "ちゃんと遊べる",
@@ -103,6 +109,7 @@ window.GAMES = [
     id: "escape_from_GUNMA",
     title: "ESCAPE FROM GUNMA",
     genre: "ACTION",
+    rating: 3,
     info: {
       time: "15〜30分",
       status: "ちゃんと遊べる",
@@ -119,6 +126,7 @@ window.GAMES = [
     id: "P-PARTY",
     title: "P-PARTY",
     genre: "PARTY GAME",
+    rating: 3,
     info: {
       time: "20〜30分",
       status: "ちゃんと遊べる（1〜4人プレイ）",
@@ -136,6 +144,7 @@ window.GAMES = [
     title: "P-LASER",
     genre: "ハイスピードレース",
     download: "https://drive.google.com/drive/folders/1lilDnHEVIN4clqny92gyi6rXQQCggFO3?usp=drive_link",
+    rating: 4,
     info: {
       time: "5分〜",
       status: "ちゃんと遊べる",
@@ -154,6 +163,7 @@ window.GAMES = [
     title: "PENGUIN RUSH",
     genre: "ペンギンレース",
     download: "https://drive.google.com/drive/folders/1dgQ9oLIELDs3elogcZcv4izMylTnQuei?usp=drive_link",
+    rating: 4,
     info: {
       time: "5分〜",
       status: "ちゃんと遊べる",
