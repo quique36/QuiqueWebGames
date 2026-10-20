@@ -4,7 +4,7 @@
 // Incrementing CACHE_VERSION will kick off the install event and force
 // previously cached resources to be updated from the network.
 /** @type {string} */
-const CACHE_VERSION = '1792499533|3602966';
+const CACHE_VERSION = '1792518058|2938508';
 /** @type {string} */
 const CACHE_PREFIX = 'PULSE DIVER-sw-cache-';
 const CACHE_NAME = CACHE_PREFIX + CACHE_VERSION;
