@@ -40,7 +40,7 @@ window.GAMES = [
     genre: "スレスパライクゲーム",
     info: {
       time: "20分〜",
-      status: "ちゃんと遊べると思うが、難易度調整してない（1〜3人プレイ）",
+      status: "ちゃんと遊べる（1〜3人プレイ）",
       future: "開発継続予定あり",
       controls: "キーボード、パッドどちらでも",
       models: "Opus 5.5",
