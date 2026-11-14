@@ -10,6 +10,7 @@
     ["controls", "操作"],
     ["models", "利用モデル"],
     ["comment", "ひとこと"],
+    ["updated", "最終更新日"],
   ];
 
   const $ = (id) => document.getElementById(id);

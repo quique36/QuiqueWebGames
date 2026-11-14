@@ -15,6 +15,7 @@
 //     controls : 操作方法
 //     models   : 主な利用モデル
 //     comment  : ひとこと
+//     updated  : 最終更新日
 //   cover    : カード全面に敷く画像（サイトルートからの相対パス。例: thumbs/xxx.png）任意
 //   icon     : カード中央に置くアイコン（build/web からの相対パス）。cover も icon も無ければタイトル文字
 //   pixel    : 画像がドット絵なら true（拡大時にぼかさない）
@@ -88,6 +89,26 @@ window.GAMES = [
     icon: "index.icon.png",
     pixel: false,
     accent: "#5bb8f0",
+  },
+  {
+    id: "BEAK_AND_BLADE",
+    title: "BEAK&BLADE",
+    genre: "ACTION",
+    rating: 5,
+    download: "https://drive.google.com/drive/folders/1eReF0cp0ZI5r2HgaNlLwKe05NYcpMarI?usp=drive_link",
+    info: {
+      time: "かなり遊べる",
+      status: "ちゃんと遊べる",
+      future: "開発継続予定あり",
+      controls: "マウス＆キーボード、パッドどちらでも",
+      models: "Opus 5.5",
+      comment: "チュートリアルまだないですごめんなさい！",
+      updated: "2026/11/14",
+    },
+    cover: "thumbs/BEAK_AND_BLADE.png",
+    icon: null,
+    pixel: false,
+    accent: "#c9a96a",
   },
   {
     id: "hina_action",
