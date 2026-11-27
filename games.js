@@ -103,7 +103,7 @@ window.GAMES = [
       controls: "マウス＆キーボード、パッドどちらでも",
       models: "Opus 5.5",
       comment: "デバッグとバランス調整が間に合ってないです",
-      updated: "2026/11/24",
+      updated: "2026/11/27",
     },
     cover: "thumbs/BEAK_AND_BLADE.png",
     icon: null,
